@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Patch tool output (regenerate with tools/make_patch.py)
+/27C1024_SCSI*.BIN
+/*.tmp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
