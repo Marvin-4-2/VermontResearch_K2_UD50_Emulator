@@ -1,8 +1,8 @@
 # Vermont Research K2 / UD50 — Firmware Reverse Engineering
 
 Reverse engineering, documentation and tooling for the firmware of a **Vermont
-Research "K2" solid-state drive** (a RAM/flash-backed storage unit that emulates a
-classic **UD50 / SMD-E disk drive**, with a SCSI host side).
+Research "K2" solid-state drive** (a RAM-based, battery-backed storage unit that emulates a
+classic **UD50 / SMD-E disk drive**, with a SCSI drive for backup).
 
 Everything here was derived by **static analysis** of two on-board memory chips:
 
