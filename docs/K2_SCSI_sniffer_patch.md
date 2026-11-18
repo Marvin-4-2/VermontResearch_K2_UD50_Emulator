@@ -24,6 +24,11 @@ Taste **`I`** öffnet das vorhandene, aber bisher unerreichbare **Menu_8 – K2 
 Sniffer Menu** (A Step mode · B Real time monitor). Keine bestehende Option geht
 verloren (A–H bleiben unverändert).
 
+> **Hinweis:** Der Sniffer selbst ist im ROM nur ein Platzhalter. Beide Funktionen
+> geben `"<Modus> - not implemented yet.  Grovel."` aus (auf echter Hardware bestätigt).
+> Der Patch macht das versteckte Menü also erreichbar, eine echte Sniffer-Funktion
+> steckt aber nicht dahinter — es war ein unfertiges Feature.
+
 ## Funktionsweise
 
 Das Options-Array von Menu_2 (8 Einträge) grenzt direkt an den Deskriptor, es war

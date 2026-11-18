@@ -22,10 +22,12 @@ Everything here was derived by **static analysis** of two on-board memory chips:
   - **Level 2** (hash `0x4ABC`) → e.g. **`5967976`**
 - **🗺️ Complete menu tree extracted** from the firmware's menu-descriptor tables
   (`Menu_0 … Menu_12e`), with every key, label, handler address and password gate.
-- **🕵️ A hidden "SCSI Sniffer" menu** (`Menu_8`, Step mode / Real-time monitor) is
-  fully implemented but **unwired** from the menu — a factory-disabled feature. A
-  patch re-enables it as a new Test/Debug menu entry, with the ROM checksum fixed up
-  so the built-in EPROM self-test still passes.
+- **🕵️ A hidden, unfinished "SCSI Sniffer" menu** (`Menu_8`, Step mode / Real-time
+  monitor). The menu, descriptor tables and handler stubs all exist, but the sniffer
+  routine was never written — it only prints `"<mode> - not implemented yet.  Grovel."`
+  — which is why the entry was unwired before release. A patch re-enables the menu entry
+  (verified on real hardware; the ROM checksum is fixed up so the EPROM self-test still
+  passes), but selecting a function just shows that stub message.
 - **🔧 Hardware note:** how to replace the 16-bit `27C1024` with **two 8-bit
   W27C512** flash chips (split images + pin-by-pin wiring).
 

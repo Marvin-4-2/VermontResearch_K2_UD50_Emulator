@@ -193,8 +193,9 @@ Backup/Restore, DRAM überschreiben, Emulations-Programme ins NVRAM schreiben* (
 
 ## Versteckter SCSI Sniffer (Menu_8)
 
-Der SCSI Sniffer ist **voll implementiert, aber nicht erreichbar** — eine im
-Werk deaktivierte Funktion, deren Code im ROM blieb:
+Der SCSI Sniffer wurde **nie fertiggestellt**: Menü, Deskriptoren und Handler-Stubs
+sind vorhanden, die eigentliche Sniffer-Logik aber nicht. Darum wurde er vor
+Auslieferung aus dem Menü genommen — nur das tote Gerüst blieb im ROM:
 
 - Das Test/Debug-Modul enthält **9** Handler-Stubs und eine **9-Einträge**-Zeiger­tabelle
   (`cs:[6,A,E,12,16,1A,1E,22,26]` → Menu_3,4,6,11,7,9,**8**,10,12).
@@ -204,8 +205,13 @@ Werk deaktivierte Funktion, deren Code im ROM blieb:
 - Der Stub hat im gesamten ROM **keinen einzigen Aufrufer** (kein Far-Call, kein Zeiger) →
   klassisch „Feature aus dem Menü genommen, Code vergessen". Seine Lage (zwischen den
   Stubs für Option E und G) passt dazu: früher eine eigene Menüzeile, vor Release entfernt.
-- Menu_8 selbst ist real: **A Step mode** → `f0e3:0086("Sniff step")`,
-  **B Real time monitor** → `f0e3:0086("Sniff monitor")` (Live-SCSI-Bus-Mitschnitt).
+- Menu_8 selbst ist nur ein **Platzhalter**: beide Punkte (**A Step mode**,
+  **B Real time monitor**) rufen `f0e3:0086` auf, das lediglich
+  `"<Modus> - not implemented yet.  Grovel."` (String @ `0x10E54`) + „Hit any key to
+  continue" ausgibt — keine echte Sniffer-Funktion.
+- **Auf echter Hardware bestätigt (2026-11-18):** Der Patch macht den Menüpunkt
+  sichtbar und erreichbar, aber beim Auswählen erscheint nur die „not implemented
+  yet. Grovel."-Meldung. Hinter der Tür ist also nichts.
 
 **Wieder aktivieren**
 - *Im Emulator:* direkt den Handler `f1ec:00BA` (phys `0xF1F7A`) aufrufen – oder den
